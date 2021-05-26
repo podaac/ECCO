@@ -1,34 +1,24 @@
-# ECCO
-Code and scripts for working with datasets published to PO.DAAC by Estimating the Circulation and Climate of the Ocean (ECCO) consortium. Example outputs from the notebooks are included in the [outputs](outputs/) folder of this repository. 
+# ECCO Tutorials
 
-For more information about the ECCO V4r4 datasets, please visit the mission page on the PO.DAAC web portal:     
-https://podaac.jpl.nasa.gov/ECCO
-
-**Requirements:** Python 3 + netCDF4 library, along with these Python packages - s3fs, requests, pandas, xarray, matplotlib, cartopy
-
-## [cloud_direct_access_s3.ipynb](cloud_direct_access_s3.ipynb)
-
-This notebook gives two examples of in-region access to ECCO data in AWS S3 from the *aws-west-2* region. 
+A place to find exercises for learning to work with ECCO data archived in AWS by the PO.DAAC. 
 
 <img src="https://podaac.jpl.nasa.gov/Podaac/thumbnails/ECCO_L4_SSH_05DEG_DAILY_V4R4.jpg" width="80%"/>
 
-You will learn how to 1) identify the S3 bucket/path corresponding to two datasets from ECCO, 2) retrieve AWS credentials and load data from the netCDF files into a multi-file dataset using *xarray*, 3) select/slice the dataset and plot a time series animation with *matplotlib* and *cartopy*, and 4) save animations to disk as MP4 files.
+Most tutorials in this repository take the form of python notebooks. [Jupyter](https://jupyter.org/) is a very popular version of python notebooks, and is used extensively by the PO.DAAC team.
 
-**Example 1** accesses and plots a global, monthly time series animation of sea surface height (SSH) data loaded from netCDF files in S3 (https://doi.org/10.5067/ECG5D-SSH44)
+## [data_access](Data_Access/)
 
-**Example 2** accesses and plots an XYT slice of ocean temperature flux data over the Gulf of Mexico. This example is similar to example 1, but demonstrates the use of a *glob* pattern to select netCDF files inside the S3 bucket to open/read with *xarray* (https://doi.org/10.5067/ECG5D-HEA44)
+### [exercise 1](Data_Access/cloud_direct_access_s3.ipynb) - direct, in-region access to ECCO V4r4 datasets in S3
 
-Both examples work with data represented on the interpolated latitude/longitude grid (0.5-degree resolution; as opposed to the native LLC0090 grid).
+In this notebook, you will learn to 1) identify AWS S3 endpoints corresponding to two ECCO datasets of interest, 2) retrieve your AWS credentials which provide access to PO.DAAC data in AWS, 3) load the target netCDF files into two multi-file datasets with *xarray*, and 4) slice and plot the datasets as animated time series using*matplotlib* and *cartopy*. The notebook finishes by writing the animations to disk as MP4 files.
 
-## [cloud_harmony_zarr_reformat.ipynb](cloud_harmony_zarr_reformat.ipynb)
+Example 1 accesses and plots a global time series animation of monthly [sea surface height (SSH)](https://doi.org/10.5067/ECG5D-SSH44) data loaded from netCDF datasets in S3.
 
-This notebook leverages the *Zarr reformatter service* (via the [Harmony API](https://harmony.earthdata.nasa.gov/)) to convert netCDF files containing monthly ocean bottom pressure data from ECCO into Zarr file format and load them with *xarray*. The zarr files are staged in an S3 bucket that is made accessible to the user from the *aws-west-2* region. 
+Example 2 accesses and plots an XYT slice of monthly [ocean temperature flux (TFLUX)](https://doi.org/10.5067/ECG5D-HEA44) data over the Gulf of Mexico. Demonstrates the use of a *glob* pattern to select netCDF files inside the S3 bucket to open/read with *xarray*. 
 
-<img src="https://podaac.jpl.nasa.gov/Podaac/thumbnails/ECCO_L4_OBP_05DEG_MONTHLY_V4R4.jpg" width="80%"/>
+### [exercise 2](Data_Access/cloud_harmony_zarr_reformat.ipynb) - access ECCO V4r4 datasets in Zarr format (via the Harmony API)
 
-You will learn how to 1) submit a Harmony API request for ECCO V4r4 data in Zarr format, 2) retrieve AWS credentials and load datasets staged in Zarr format into a multi-file dataset using *xarray*, 3) plot a time series using *xarray*'s interface to *matplotlib*.
-
-More information about ocean bottom pressure data from ECCO V4r4 may be found on the PO.DAAC web portal: https://doi.org/10.5067/ECG5M-OBP44 
+In this notebook, you will learn to 1) use the Zarr reformatter service (via Harmony API) to request monthly [ocean bottom pressure (OBP)](https://doi.org/10.5067/ECG5D-HEA44) data from ECCO V4r4 in Zarr format, 2) retrieve your AWS credentials which provide access to PO.DAAC data in AWS, and 3) load the staged zarr datasets into a multi-file dataset with *xarray*. The notebook finishes by drawing static time series plots with *matplotlib* and *xarray*.
 
 ## PO.DAAC contacts:
 *  jack.mcnelis@jpl.nasa.gov
